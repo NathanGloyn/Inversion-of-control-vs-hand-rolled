@@ -22,6 +22,9 @@ namespace Demo
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var controllerFactory = new MyControllerFactory();
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
     }
 }

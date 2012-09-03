@@ -131,6 +131,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Shipper.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="MyControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
