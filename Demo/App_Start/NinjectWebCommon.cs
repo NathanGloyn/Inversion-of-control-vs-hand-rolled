@@ -9,6 +9,7 @@ namespace IoC.App_Start
     using AutoMapper;
     using DataAccessLayer.Core;
     using DataAccessLayer.Interfaces;
+    using Demo.DomainLogic;
     using Demo.Interfaces;
     using Demo.Repositories;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -61,6 +62,10 @@ namespace IoC.App_Start
                   .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["Northwind"].ConnectionString);
             kernel.Bind<IMappingEngine>().ToMethod(ctx => Mapper.Engine);
             kernel.Bind<IOrderRepository>().To<OrderRepository>();
+            kernel.Bind<IShipperRepository>().To<ShipperRepository>();
+            kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
+            kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
+            kernel.Bind<IOrderService>().To<OrderService>();
         }        
     }
 }
