@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using HandRolled.Models;
-using HandRolled.ViewModel;
+using Demo.Models;
+using Demo.ViewModel;
 
-namespace HandRolled.Interfaces
+namespace Demo.Interfaces
 {
     public interface IOrderService
     {

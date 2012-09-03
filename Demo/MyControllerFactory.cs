@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using DataAccessLayer.Core;
 using Demo.Controllers;
+using Demo.DomainLogic;
 using Demo.Repositories;
 
 namespace Demo
@@ -20,9 +21,14 @@ namespace Demo
             var dataAccess = new DataAccess(connectionString);
 
             var orderRepository = new OrderRepository(dataAccess, Mapper.Engine);
+            var customerRepository = new CustomerRepository(dataAccess, Mapper.Engine);
+            var employeeRepository = new EmployeeRepository(dataAccess, Mapper.Engine);
+            var shipperRepository = new ShipperRepository(dataAccess, Mapper.Engine);
+
+            var orderService = new OrderService(orderRepository, customerRepository, employeeRepository, shipperRepository);
 
             if (controllerType == typeof(OrderController))
-                return new OrderController(orderRepository);
+                return new OrderController(orderRepository, orderService);
 
             return base.GetControllerInstance(requestContext, controllerType);
         }
