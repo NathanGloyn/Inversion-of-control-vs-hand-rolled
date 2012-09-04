@@ -15,17 +15,21 @@ namespace Demo.DomainLogic
         private IEmployeeRepository employeeRepository;
         private ICustomerRepository customerRepository;
         private IShipperRepository shiperRepository;
+        private ILogger logger;
 
-        public OrderService(IOrderRepository orderRepository, ICustomerRepository customerRepository, IEmployeeRepository employeeRepository, IShipperRepository shiperRepository)
+        public OrderService(IOrderRepository orderRepository, ICustomerRepository customerRepository, IEmployeeRepository employeeRepository, IShipperRepository shiperRepository, ILogger log)
         {
             this.orderRepository = orderRepository;
             this.employeeRepository = employeeRepository;
             this.customerRepository = customerRepository;
             this.shiperRepository = shiperRepository;
+            logger = log;
         }
 
         public Order_EditViewModel CreateViewModelForEdit(int Id)
         {
+            logger.Log("OrderService CreateViewModelForEdit");
+
             var order = orderRepository.GetDomainObjectById(Id);
             var employees = employeeRepository.GetAll();
             var shippers = shiperRepository.GetAll();
@@ -57,6 +61,8 @@ namespace Demo.DomainLogic
 
         public Dictionary<string, string> Update(Order_EditViewModel toUpdate)
         {
+            logger.Log("OrderService Update");
+
             var validationErrors = ValidateModel(toUpdate);
 
             if (validationErrors.Count == 0)

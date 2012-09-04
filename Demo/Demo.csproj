@@ -132,8 +132,10 @@
     </Compile>
     <Compile Include="Interfaces\ICustomerRepository.cs" />
     <Compile Include="Interfaces\IEmployeeRepository.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IShipperRepository.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Order.cs" />

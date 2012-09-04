@@ -16,6 +16,7 @@ namespace Demo
 {
     public class ControllerAbstractFactory
     {
+        internal static ILogger _logger;
         internal static string _connectionString;
      
         internal Dictionary<Type, Func<Controller>> functionMap;
@@ -32,6 +33,19 @@ namespace Demo
                 {typeof(ShipperController), CreateShipperController}
             };
 
+        }
+
+        private ILogger Log
+        {
+            get
+            {
+                if (_logger == null)
+                {
+                    _logger = new Logger();
+                }
+
+                return _logger;
+            }
         }
 
         private string ConnectionString 
@@ -66,30 +80,30 @@ namespace Demo
 
 
             var orderRepository = new OrderRepository(dataAccess, Mapper.Engine);
-            var orderService = new OrderService(orderRepository, customerRepository, employeeRepository, shipperRepository);
+            var orderService = new OrderService(orderRepository, customerRepository, employeeRepository, shipperRepository, Log);
 
-            return (Controller) new OrderController(orderRepository, orderService);
+            return (Controller) new OrderController(orderRepository, orderService, Log);
         }
 
         private Controller CreateCustomerController()
         {
             var customerRepository = new CustomerRepository(dataAccess, Mapper.Engine);
 
-            return new CustomerController(customerRepository);
+            return new CustomerController(customerRepository, Log);
         }
 
         private Controller CreateEmployeeController()
         {
             var employeeRepository = new EmployeeRepository(dataAccess, Mapper.Engine);
 
-            return new EmployeeController(employeeRepository);
+            return new EmployeeController(employeeRepository, Log);
         }
 
         private Controller CreateShipperController()
         {
             var shipperRepository = new ShipperRepository(dataAccess, Mapper.Engine);
 
-            return new ShipperController(shipperRepository);
+            return new ShipperController(shipperRepository, Log);
         }
     }
 }
