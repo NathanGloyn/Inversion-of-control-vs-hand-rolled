@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HandRolled.Interfaces
+namespace Demo.Interfaces
 {
     public interface ILogger
     {

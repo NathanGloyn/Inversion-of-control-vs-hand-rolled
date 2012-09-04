@@ -10,17 +10,18 @@ namespace Demo.Controllers
     public class CustomerController : Controller
     {
         private ICustomerRepository customerRepository;
+        private ILogger logger;
 
-        public CustomerController(ICustomerRepository customerRepository)
+        public CustomerController(ICustomerRepository customerRepository, ILogger log)
         {
             this.customerRepository = customerRepository;
+            logger = log;
         }
-
-        //
-        // GET: /Customer/
 
         public ActionResult Index()
         {
+            logger.Log("Customer Index");
+
             var customers = customerRepository.GetAll();
 
             return View(customers);

@@ -10,21 +10,21 @@ namespace Demo.Controllers
     public class ShipperController : Controller
     {
         private IShipperRepository shipperRepository;
+        private ILogger logger;
 
-        public ShipperController(IShipperRepository shipperRepository)
+        public ShipperController(IShipperRepository shipperRepository, ILogger log)
         {
             this.shipperRepository = shipperRepository;
+            logger = log;
         }
-
-        //
-        // GET: /Shipper/
 
         public ActionResult Index()
         {
+            logger.Log("ShipperController Index");
+
             var shippers = shipperRepository.GetAll();
 
             return View(shippers);
         }
-
     }
 }

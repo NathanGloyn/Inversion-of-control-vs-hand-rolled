@@ -9,6 +9,7 @@ namespace IoC.App_Start
     using AutoMapper;
     using DataAccessLayer.Core;
     using DataAccessLayer.Interfaces;
+    using Demo;
     using Demo.DomainLogic;
     using Demo.Interfaces;
     using Demo.Repositories;
@@ -66,6 +67,7 @@ namespace IoC.App_Start
             kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
             kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
             kernel.Bind<IOrderService>().To<OrderService>();
+            kernel.Bind<ILogger>().To<Logger>();
         }        
     }
 }
